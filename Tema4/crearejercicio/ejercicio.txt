@@ -1,0 +1,1 @@
+pokemon(nombre,numeropokedex,movimentos,habilidad,tipo,nombreentrenador,medallaEntrenador,movimiento,cantidadPokemon,velocidad)
