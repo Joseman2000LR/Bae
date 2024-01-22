@@ -7,7 +7,7 @@ SQLite3 tarea2.db
 • PELÍCULA (TIPO TEXT)
 • EDAD (TIPO INTEGER)
 • TIPO (TIPO TEXT)*/
-CREATE table  DISNEY(ID Integer PRimary Key , nombre text , Pelicula text, edad text, tipo text);
+CREATE table  DISNEY(ID Integer PRimary Key , nombre text , Pelicula text, edad INTEGER, tipo text);
 /* PASO 2: INSERTAR 50 ENTRADAS*/
 INSERT  INTO DISNEY VALUES (1, 'MICKEY', 'FANTASÍAl', 90, 'RATÓN');
 INSERT  INTO DISNEY VALUES(2,'MINNIE','FANTASÍA'92,'RATÓN');
