@@ -35,20 +35,20 @@ insert  INTO DISNEY VALUES(20,'MEGARA','HÉRCULES',26,'HUMANO');
 /*1. Seleccionar todos los personajes de la película "Frozen".*/
 SELECT  * FROM DISNEY WHERE  PELICULA='FROZEN';
 /*2. Encontrar los personajes humanos mayores de 25 años.*/
-SELECT *  FROM Disney WHERE tipo='HUMANO' and edad >25; 
+SELECT *  FROM Disney WHERE tipo='HUMANO' AND edad >25; 
 /*3. Ordenar los personajes por edad de manera descendente.*/
 SELECT * FROM DISNEY order by EDAD DESC ;
 /*4. Contar el número de personajes por tipo.*/
-SELECT COUNT(tipo) from Disney ;
+SELECT COUNT(tipo) from Disney ;/* o */SELECT tipo,count(tipo)as n_pj from Disney group by tipo;
 /*5. Buscar personajes cuyo nombre comienza con la letra "M".*/
 SELECT  * FROM  DISNEY WHERE NOMBRE LIKE 'M%';
 /*6. Encontrar los personajes de DISNEY que no pertenecen a la película "Toy Story".*/
-SELECT * from DISNEY WHERE PELICULA !='TOY STORY';
+SELECT * from DISNEY WHERE PELICULA !='TOY STORY';/* o */select * from disney not like 'toy story';
 /*7. Calcular la edad promedio de los personajes humanos.*/
-SELECT AVG(EDAD) FROM DISNEY  ; 
+SELECT AVG(EDAD)  as mediaHumano FROM DISNEY  WHERE personajes='Humanos'; 
 /*8. Mostrar los personajes de DISNEY cuyos nombres contienen más de 5 letras.*/
 SELECT nombre from DISNEY WHERE LENGTH(nombre)>5;
 /*9. Encontrar los personajes cuyas edades están entre 25 y 30 años (inclusive).*/
 SELECT NOMBRE FROM  DISNEY WHERE EDAD BETWEEN 25 AND 30;
 /*10. Ordenar los personajes por película y edad de manera ascendente.*/
-SELECT NOMBRE ,PELICULA, EDAD FROM  DISNEY order by PELICULA ASC , edad ASC;
+SELECT * FROM  DISNEY order by PELICULA ASC , edad ASC;
