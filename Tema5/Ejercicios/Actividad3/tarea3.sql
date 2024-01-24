@@ -208,57 +208,41 @@ SELECT GENERO,COUNT(*) AS CANTIDAD_SERIES FROM SERIES GROUP BY GENERO;
 SELECT * FROM SERIES WHERE GENERO ='Ciencia Ficción';
 /*11. Encuentra las series cuyos títulos contienen la palabra "The".*/
 SELECT * FROM SERIES WHERE  TITULO LIKE '%The%';
-/*12. Calcula la calificación promedio por género.*
-/
-
-/*13. Ordena las series por año de forma descendente y muestra solo las primeras 5.*
-/
-
-/*14. Obtén la serie con el título más largo.*
-/
-
-/*15. Muestra las series que no están en emisión y tienen una calificación mayor a 8.*
-/
-
-/*16. Encuentra las series cuya fecha de estreno es anterior a 2010 o posterior a 2020.*
-/
-
-/*17. Calcula la suma de las calificaciones de las series de Acción.*
-/
-
-/*18. Muestra las series que tienen un título único (ningún otro tiene el mismo título).*
-/
-
-/*19. Encuentra la serie con la calificación más baja entre las que están en emisión.*
-/
-
-/*20. Obtén las series cuyo género es el mismo que el de 'Stranger Things'.*
-/
-
-/*21. Muestra las series de Drama ordenadas por calificación de forma descendente.*
-/
-
-/*22. Calcula el rango de calificaciones (diferencia entre la calificación más alta y la más BAJA).*
-/
-
+/*12. Calcula la calificación promedio por género.*/
+SELECT GENERO, AVG(CALIFICACION)AS media FROM SERIES GROUP BY GENERO;
+/*13. Ordena las series por año de forma descendente y muestra solo las primeras 5.*/
+SELECT * FROM SERIES ORDER BY ANIO DESC LIMIT 5;
+/*14. Obtén la serie con el título más largo.*/
+SELECT * FROM SERIES WHERE LENGTH(TITULO)=(SELECT MAX(LENGTH(TITULO)) FROM SERIES); 
+/*15. Muestra las series que no están en emisión y tienen una calificación mayor a 8.*/
+SELECT * FROM SERIES WHERE EN_EMISION =0 AND CALIFICACION >8;
+/*16. Encuentra las series cuya fecha de estreno es anterior a 2010 o posterior a 2020.*/
+SELECT * FROM SERIES WHERE ANIO <'2010-00-00' OR ANIO >'2020-00-00'; 
+/*17. Calcula la suma de las calificaciones de las series de Acción.*/
+SELECT SUM(CALIFICACION)AS Sumacalificacion FROM SERIES WHERE GENERO='Accion';
+/*18. Muestra las series que tienen un título único (ningún otro tiene el mismo título).*/
+SELECT * FROM SERIES WHERE TITULO NOT IN (SELECT  TITULO FROM SERIES GROUP BY TITULO HAVING  COUNT(TITULO) > 1);
+/*19. Encuentra la serie con la calificación más baja entre las que están en emisión.*/
+SELECT * FROM SERIES WHERE EN_EMISION=1 ORDER BY CALIFICACION DESC LIMIT 1;
+/*20. Obtén las series cuyo género es el mismo que el de 'Stranger Things'.*/
+SELECT * FROM SERIES WHERE GENERO IN(SELECT Genero FROM SERIES WHERE TITULO='Stranger Things');
+/*21. Muestra las series de Drama ordenadas por calificación de forma descendente.*/
+SELECT * FROM SERIES WHERE GENERO='Drama' ORDER BY CALIFICACION DESC;
+/*22. Calcula el rango de calificaciones (diferencia entre la calificación más alta y la más BAJA).*/
+SELECT SUM(CALIFICACION)AS rango FROM SERIES ;/* NO ESTA TERMINADO*/
 /*23. Encuentra las series que se estrenaron antes que 'The Witcher'.*/
-
-/*24. Muestra las series que tienen un título similar al de 'Money Heist' (ignorando MAYÚSCULAS/MINÚSCULAS).*
-/
-
-/*25. Calcula la calificación promedio de las series que no están en emisión y tienen más de 3 AÑOS DESDE SU ESTRENO.*
-/
-
-/*26. Actualiza la calificación de 'The Crown' a 9.2.*
-/
-
-/*27. Marca como finalizada la serie 'Stranger Things' (cambia el valor de En_Emisión a FALSE).*
-/
-
-/*28. Elimina la serie con el título '13 Reasons Why'.*
-/
-
-/*29. Actualiza la fecha de estreno de 'The Mandalorian' al 2020-01-01.*
-/
-
+SELECT * FROM SERIES WHERE ANIO <(SELECT ANIO FROM SERIES WHERE TITULO='The Witcher');
+/*24. Muestra las series que tienen un título similar al de 'Money Heist' (ignorando MAYÚSCULAS/MINÚSCULAS).*/
+SELECT * FROM SERIES WHERE TITULO='Money Heist' OR TITULO='MONEY HEIST';
+/*25. Calcula la calificación promedio de las series que no están en emisión y tienen más de 3 AÑOS DESDE SU ESTRENO.*/
+SELECT AVG(CALIFICACION) AS media FROM SERIES WHERE EN_EMISION=0 AND ANIO >(SELECT ANIO FROM SERIES WHERE EN_EMISION=0);
+/*26. Actualiza la calificación de 'The Crown' a 9.2.*/
+UPDATE SERIES  SET Calificacion =9.2  WHERE Titulo =' THE CROWN';
+/*27. Marca como finalizada la serie 'Stranger Things' (cambia el valor de En_Emisión a FALSE).*/
+UPDATE SERIES SET EN_EMISION =FALSE WHERE Titulo ='STRANGER THINGS';
+/*28. Elimina la serie con el título '13 Reasons Why'.*/
+DELETE FROM SERIES WHERE Titulo ='13 Reasons Why' ;
+/*29. Actualiza la fecha de estreno de 'The Mandalorian' al 2020-01-01.*/
+UPDATE SERIES SET anio ='2020-01-01' WHERE Titulo='The Mandalorian';
 /*30. Elimina todas las series con calificación menor a 8.*/
+DELETE FROM SERIES WHERE Calificacion <8;
