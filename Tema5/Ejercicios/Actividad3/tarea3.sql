@@ -185,8 +185,8 @@ INSERT INTO SERIES (
 );
 /*REALIZA LA INSERCIÓN EN LA TABLA SERIES DE LAS 20 ENTRADAS.
 PASO 3: REALIZAR CONSULTAS DE DATOS.*/
-
 /*1. Selecciona todos los registros de la tabla.*/
+
 Select * from SERIES ;
 /*2. Muestra sólo los títulos y géneros de las series.*/
 Select Titulo , Genero FROM SERIES ;
@@ -205,7 +205,7 @@ SELECT TiTULO FROM SERIES WHERE En_Emision =1;
 /*9. Obtén la cantidad total de series por género.*/
 SELECT GENERO,COUNT(*) AS CANTIDAD_SERIES FROM SERIES GROUP BY GENERO;
 /*10. Filtra las series de Ciencia Ficción o Drama.*/
-SELECT * FROM SERIES WHERE GENERO ='Ciencia Ficción';
+SELECT * FROM SERIES WHERE GENERO ='Ciencia Ficción' OR GENERO='Drama';
 /*11. Encuentra las series cuyos títulos contienen la palabra "The".*/
 SELECT * FROM SERIES WHERE  TITULO LIKE '%The%';
 /*12. Calcula la calificación promedio por género.*/
@@ -229,7 +229,7 @@ SELECT * FROM SERIES WHERE GENERO IN(SELECT Genero FROM SERIES WHERE TITULO='Str
 /*21. Muestra las series de Drama ordenadas por calificación de forma descendente.*/
 SELECT * FROM SERIES WHERE GENERO='Drama' ORDER BY CALIFICACION DESC;
 /*22. Calcula el rango de calificaciones (diferencia entre la calificación más alta y la más BAJA).*/
-SELECT SUM(CALIFICACION)AS rango FROM SERIES ;/* NO ESTA TERMINADO*/
+SELECT MAX(CALIFICACION) - MIN(CALIFICACION) AS RANGO_DE_CALIFICACIONES FROM SERIES;
 /*23. Encuentra las series que se estrenaron antes que 'The Witcher'.*/
 SELECT * FROM SERIES WHERE ANIO <(SELECT ANIO FROM SERIES WHERE TITULO='The Witcher');
 /*24. Muestra las series que tienen un título similar al de 'Money Heist' (ignorando MAYÚSCULAS/MINÚSCULAS).*/
