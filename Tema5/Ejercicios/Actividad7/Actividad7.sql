@@ -1,25 +1,13 @@
-PASO 2: LECTURA DEL FICHERO SQL.
-
-1. Entra en SQLite3 a través del siguiente comando:
-
-SQLITE3 TAREA7.DB
-
-2. Haciendo un .read del fichero sql, de nombre supermercado-dump.sql, realiza la
-
 
 /**1. Mostrar todos los productos de la categoría "Bebidas".**/
-
-/**2. Listar los productos ordenados por precio de forma descendente.**
-/
-
-/**3. Calcular el precio total de todos los productos en la tabla "productos".**
-/
-
-/**4. Encontrar los productos con un nombre que contenga la letra 'a'.**
-/
-
-/**5. Obtener la cantidad total de productos vendidos en todas las fechas.**
-/
+SELECT * FROM PRODUCTOS WHERE categoria ='Bebidas';
+/**2. Listar los productos ordenados por precio de forma descendente.**/
+SELECT  * FROM PRODUCTOS order by precio desc; 
+/**3. Calcular el precio total de todos los productos en la tabla "productos".**/
+SELECT  avg(precio) from PRODUCTOS ;
+/**4. Encontrar los productos con un nombre que contenga la letra 'a'.**/
+SELECT * FROM PRODUCTOS WHERE nombre like '%a%';
+/**5. Obtener la cantidad total de productos vendidos en todas las fechas.**/
 
 /**6. Encontrar el producto más caro en cada categoría.**
 /
