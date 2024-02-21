@@ -7,8 +7,7 @@ SELECT * FROM VIDEOJUEGO where titulo LIKE '%and %';
 /**4.VIDEOJUEGOS CUYO TÍTULO COMIENZA CON UNA VOCAL.**/
 SELECT * from VIDEOJUEGO where titulo like '%a' or 'e%' or 'u%' or 'i%' or 'o%';
 /**5.VIDEOJUEGOS CUYA DESARROLLADORA TIENE AL MENOS UNA VOCAL REPETIDA.**/
-SELECT * FROM DESARROLLADORA where nombre LIKE '%a' OR 'e%' OR 'u%' OR 'i%' OR 'o%';
-/* arreglar**/
+
 /**6.VIDEOJUEGOS CON PRECIOS QUE TIENEN DOS DÍGITOS DECIMALES EXACTOS.**/
 SELECT * FROM VIDEOJUEGO where precio like '%.%' ;
 /**7.VIDEOJUEGOS CUYOS TÍTULOS TIENEN AL MENOS TRES PALABRAS.**/
@@ -22,7 +21,7 @@ SELECT * FROM DESARROLLADORA where nombre like '%ez';
 /**11. Obtener todos las desarrolladoras cuyo nombre tiene al menos 7 caracteres.**/
 SELECT * FROM DESARROLLADORA where  LENGTH(nombre)<=7;
 /**12. Seleccionar los videojuegos cuya desarrolladora es diferente de "Ubisoft".**/
-SELECT VIDEOJUEGO.*  from videojuegos inner join DESARROLLADORA  on videojuego.DESARROLLADORA_ID = DESARROLLADORA.id where DESARROLLADORA.nombre != 'Ubisoft';
+SELECT *  FROM VIDEOJUEGO  WHERE DESARROLLADORA_ID NOT IN (  SELECT ID  FROM DESARROLLADORA WHERE NOMBRE = 'Ubisoft');
 /**13. Obtener todos las desarrolladoras cuyo nombre contiene al menos una vocal.**/
 SELECT * FROM DESARROLLADORA where nombre REGEXP '[aeiouAEIOU]';
 /**14. Seleccionar los videojuegos cuyo título comienza con una letra mayúscula.**/
@@ -52,11 +51,12 @@ SELECT * FROM VIDEOJUEGO where titulo NOT regexp '\d';
 /**26. Seleccionar los videojuegos cuyo título contiene al menos tres vocales.**/
 SELECT titulo FROM VIDEOJUEGO WHERE titulo regexp '';
 /**27. Obtener todas las desarrolladoras cuyo nombre inicia con una consonante.**/
-
+SELECT * FROM DESARROLLADORA WHERE NOMBRE REGEXP '^[^aeiouAEIOU]';
 /**28. Seleccionar los videojuegos cuyo título no contiene la palabra "The".**/
-
+SELECT titulo from VIDEOJUEGO where TITULO NOT regexp '^[The]';
 /**29. Obtener todas las desarrolladoras cuyo nombre tiene al menos una letra repetida CONSECUTIVAMENTE.**/
-'a-z\1'
+SELECT * FROM DESARROLLADORA WHERE NOMBRE LIKE '%(.)\1%';
 /**30. Obtener todas las desarrolladoras cuyo nombre empieza con "U" o termina con "x":**/
-
+SELECT * FROM DESARROLLADORA WHERE NOMBRE LIKE 'U%' OR NOMBRE LIKE '%x';
 /**31. Obtener todas las desarrolladoras cuyo nombre no contiene caracteres especiales.**/
+SELECT * FROM DESARROLLADORA WHERE LENGTH(NOMBRE) = LENGTH(REPLACE(NOMBRE, '[^a-zA-Z0-9]', ''));
