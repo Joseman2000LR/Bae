@@ -47,7 +47,7 @@ SELECT titulo from VIDEOJUEGO where TITULO regexp '^[The]';
 /**24. Obtener todas las desarrolladoras cuyo nombre tiene al menos una letra mayúscula.**/
 SELECT * from DESARROLLADORA where nombre regexp '[A-Z]\1';
 /**25. Obtener todos los videojuegos cuyo nombre no contiene números.**/
-SELECT * FROM VIDEOJUEGO where titulo NOT regexp '\d';
+SELECT titulo FROM VIDEOJUEGO where titulo NOT regexp '\d';
 /**26. Seleccionar los videojuegos cuyo título contiene al menos tres vocales.**/
 SELECT titulo FROM VIDEOJUEGO WHERE titulo regexp '';
 /**27. Obtener todas las desarrolladoras cuyo nombre inicia con una consonante.**/
