@@ -1,0 +1,54 @@
+create database lanparty;
+go
+use lanparty;
+
+create table visitantes(
+	nombre varchar(50),
+	DNI varchar(9),
+	edad tinyint,
+	sexo varchar(1),
+	constraint chs check (sexo in('H','M')),
+	calle varchar(50),
+	codigociudad varchar(5),
+	mail varchar(60),
+	gastos money);
+
+	create table ciudades(
+		codigo varchar(5) primary key,
+		nombre varchar(25),
+		mes varchar(10)
+		constraint chm check (mes in('enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre')),
+		año int);
+
+		insert into visitantes values 
+		('Pedro Pérez','12345678A', 17, 'H','C/Poeta Hernández Mora, 4', '38500','pp@gmail.com', 100),
+		('Pedro Pérez','12345678A', 17, 'H','C/Poeta Hernández Mora, 4', '38600','pp@gmail.com' , 110),
+		('Pedro Pérez','12345678A', 17, 'H','C/Poeta Hernández Mora, 4','38700', 'pp@gmail.com' ,80),
+		('María González','12345689B', 19, 'M','Avda de los Príncipes, 15','38500','mg@gmail.com' , 0);
+
+		insert into visitantes values 
+		('Mario Mesa','18345678A', 17, 'H','C/Poeta Hernández Mora, 4', '38000','mm@gmail.com', 100),
+		('Mario Mesa','18345678A', 17, 'H','C/Poeta Hernández Mora, 4', '38000','mm@gmail.com' , 110);
+		insert into visitantes values 
+		('Ángela Acosta','68345678A', 27, 'M','Méndez Núñez', '38000','aa@gmail.com', 100),
+		('Ángela Acosta','68345678A', 27, 'M','Méndez Núñez', '38000','aa@gmail.com' , 110);
+
+		insert into visitantes values 
+		('Elena Díaz','22345678A', 16, 'M','C/Niceto ALberto Díaz, S/N', '38300','ed@gmail.com', 10),
+		('Elena Díaz','22345678A', 16, 'M','C/Niceto ALberto Díaz, S/N', '38400','ed@gmail.com' , 90),
+		('Elena Díaz','22345678A', 16, 'M','C/Niceto ALberto Díaz, S/N','38500', 'ed@gmail.com' ,76),
+		('Margarita Dorta','32345689C', 19, 'M','Avda de los Príncipes, 46','38300','md@gmail.com' , 50);
+
+		insert into visitantes values 
+		('Pilar López','22345699C', 21, 'M','C/Teobaldo Power, 3', '38300',null, 200);
+
+		insert into ciudades values
+		('38300','Puerto de la Cruz','enero',2023),
+		('38400','La Orotava','febrero',2023),
+		('38500','Güímar','marzo',2023),
+		('38000','Santa Cruz de Tenerife','abril',2023),
+		('38200','Candelaria','mayo',2023),
+		('38700','Granadilla','junio',2023);
+		
+		insert into ciudades values
+		('38990','San Miguel','agosto',2023);
