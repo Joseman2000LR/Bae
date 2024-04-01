@@ -1,4 +1,0 @@
-SELECT DISTINCT paciente.*
-FROM paciente
-JOIN Pago ON paciente.idPaciente = Pago.idPago
-ORDER BY paciente.apellido ASC;
