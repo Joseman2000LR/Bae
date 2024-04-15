@@ -126,21 +126,23 @@ INSERT INTO ALUMNOS (
 
 --- DEFINE LOS SIGUIENTES ÍNDICES: UN ÍNDICE ÚNICO POR EL CAMPO "documento" Y UN ÍNDICE COMÚN POR CIUDAD Y PROVINCIA.
 
-create unique CLUSTER INDEX ix_documento on Alumnos (documentos);
-CREATE UNIQUE CLUSTER INDEX IX_Ciudad_Provincia ON ALUMNOS (Ciudad ,Provincia);
+create unique nooclustered INDEX ix_documento on Alumnos (documentos);
+CREATE UNIQUE nonCLUSTERED INDEX IX_Ciudad_Provincia ON ALUMNOS (Ciudad ,Provincia);
 --NOTA: MUESTRA EL COMANDO Y LA SALIDA. JUSTIFICA EL TIPO DE ÍNDICE EN UN COMENTARIO.
-falta
+--NO SE PUEDEN CREAR VARIOS ÍNDICES CLÚSTER EN TABLA 'Alumnos'.
+-- QUITE EL ÍNDICE CLÚSTER EXISTENTE 'PK__ALUMNOS__30E5907E2599B1F4' ANTES DE CREAR OTRO.
+-- se tiene que poner El nonCLUSTERED para que te lo admita
+
 -- el index de documento :
 -- el index de ciudad y provincias:
 
 --- VEA LOS ÍNDICES DE LA TABLA.
-
+--NOTA: MUESTRA EL COMANDO Y LA SALIDA.
 SP_HELPINDEX Alumnos;
 
---NOTA: MUESTRA EL COMANDO Y LA SALIDA.
 
-falta 
 --- INTENTE INGRESAR UN ALUMNO CON CLAVE PRIMARIA REPETIDA.
+--NOTA: MUESTRA EL COMANDO Y LA SALIDA.
 insert into Alumnos ( AÑO_INCRIPCION,
 NOMBRE,
 DOCUMENTACION,
@@ -154,9 +156,8 @@ PROVINCIA)  VALUES (
 'Ciudad once',
 'Provincia Uno'
 )
---NOTA: MUESTRA EL COMANDO Y LA SALIDA.
- falta
 --- INTENTE INGRESAR UN ALUMNO CON DOCUMENTO REPETIDO.
+--NOTA: MUESTRA EL COMANDO Y LA SALIDA.
 INSERT INTO ALUMNOS (
     AÑO_INCRIPCION,
     NOMBRE,
@@ -172,15 +173,50 @@ INSERT INTO ALUMNOS (
     'Ciudad once',
     'Provincia trece'
 )
---NOTA: MUESTRA EL COMANDO Y LA SALIDA.
-falta
 --- INGRESE VARIOS ALUMNOS DE LA MISMA CIUDAD Y PROVINCIA.
-
+INSERT INTO ALUMNOS (
+    AÑO_INCRIPCION,
+    NOMBRE,
+    DOCUMENTACION,
+    DOMICILIO,
+    CIUDAD,
+    PROVINCIA
+) VALUES (
+    '2022-01-09',
+    'JuanPe ',
+    '123456789A',
+    'Calle 14',
+    'Ciudad once',
+    'Provincia trece'
+), VALUES (
+    '2022-08-02',
+    'Ana',
+    '123456789A',
+    'Calle 14',
+    'Ciudad once',
+    'Provincia trece'
+), VALUES (
+    '2022-11-02',
+    'Pepe',
+    '123456789A',
+    'Calle 14',
+    'Ciudad once',
+    'Provincia trece'
+), VALUES (
+    '2022-12-22',
+    'Marco',
+    '123456789A',
+    'Calle 14',
+    'Ciudad once',
+    'Provincia trece'
+)
 --NOTA: MUESTRA EL COMANDO Y LA SALIDA.
 
 --- ELIMINA LOS ÍNDICES CREADOS, Y MUESTRA QUE YA NO SE ENCUENTRAN.
 --NOTA: MUESTRA EL COMANDO Y LA SALIDA.
-falta
-drop index  IX_DOCUMENTO;
-DROP INDEX IX_CIUDAD_PROVINCIA;
+drop index ALUMNOS.PK__ALUMNOS__30E5907E2599B1F4;
+drop index  Alumnos.IX_DOCUMENTO;
+DROP INDEX ALUMNOS.IX_CIUDAD_PROVINCIA;
+
+SP_HELPINDEX ALUMNOS;
 
