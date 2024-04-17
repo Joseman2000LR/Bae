@@ -1,4 +1,4 @@
-CREATE DATABASES;
+create  datbase deporte; 
 
 CREATE TABLE SOCIOS(
     DOCUMENTO CHAR(8) NOT NULL,
