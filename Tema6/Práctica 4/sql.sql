@@ -1,16 +1,43 @@
 --1. Inserta el tipo de servicio Ocio.
-
+INSERT INTO TIPOSERVICIO VALUES ('Ocio');
 --2. Da de alta una reserva de la habitación 101 para el cliente 12345 para las noches 
--- DELETE del 2 al 4 de julio de 2024. El código de la reserva es autonumérico.
-
+-- del 2 al 4 de julio de 2024. El código de la reserva es autonumérico.
+INSERT INTO RESERVAHABITAC (
+    FECHAENTRADA,
+    FECHASALIDA,
+    IVA,
+    NUMHABITACION,
+    CLIENTE
+) VALUES (
+    '2024-07-02',
+    '2024-07-04',
+    0.07,
+    101,
+    '12345'
+);
 --3. Actualiza el teléfono del cliente 12345. Su nuevo número es 123456789.
-
+UPDATE CLIENTE
+SET
+    TELEFONO = '123456789'
+WHERE
+    IDCLIENTE = '12345';
 --4. Actualiza el precio de los servicios incrementándose en un 2%.
-
+UPDATE SERVICIO
+SET
+    PRECIO = PRECIO * 1.02;
 --5. Borra la reserva de la habitación 101 realizada anteriormente.
-
+DELETE FROM RESERVAHABITAC
+WHERE
+    NUMHABITACION = 101;
 --6. Borra los tipos de servicio que no tienen servicios definidos.
-
+DELETE FROM TIPOSERVICIO
+WHERE
+    NOMBRESERVICIO NOT IN (
+        SELECT
+            NOMBRESERVICIO
+        FROM
+            SERVICIO
+    );
 --7. Crea una vista que devuelva los clientes cuyo apellido incluya la sílaba “le”
 --ORDENADOS POR SU IDENTIFICADOR.
 
