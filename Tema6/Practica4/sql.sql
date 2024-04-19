@@ -25,7 +25,8 @@ WHERE
 UPDATE SERVICIO
 SET
     PRECIO = PRECIO * 1.02;
---5. Borra la reserva de la habitación 101 realizada anteriormente.
+--5. Borra la reserva de la habitación 101 realizada anteriormente.  
+mirar
 DELETE FROM RESERVAHABITAC
 WHERE
     NUMHABITACION = 101;
@@ -40,13 +41,52 @@ WHERE
     );
 --7. Crea una vista que devuelva los clientes cuyo apellido incluya la sílaba “le”
 --ORDENADOS POR SU IDENTIFICADOR.
+        CREATE VIEW CLIENTESCON_LE AS
+    SELECT
+        IDCLIENTE,
+        PAIS,
+        NOMBRE,
+        PRIMERAPELLIDO,
+        SEGUNDOAPELLIDO,
+        DIRECCION,
+        TELEFONO,
+        OBSERVACIONES
+    FROM
+        CLIENTE
+    WHERE
+        PRIMERAPELLIDO LIKE '%le%'
+        OR SEGUNDOAPELLIDO LIKE '%le%';
 
+
+        ORDER BY
+IDCLIENTE;
+
+        preguntar
 --8. Crea una vista que devuelva los clientes, ordenados por su primer apellido, que
 --TENGAN ALGUNA OBSERVACIÓN ANOTADA.
-
+CREATE VIEW CLIENTESCONOBSERVACIONES AS
+    SELECT
+        IDCLIENTE,
+        PAIS,
+        NOMBRE,
+        PRIMERAPELLIDO,
+        SEGUNDOAPELLIDO,
+        DIRECCION,
+        TELEFONO,
+        OBSERVACIONES
+    FROM
+        CLIENTE
+    WHERE
+        OBSERVACIONES IS NOT NULL;
 --9. Crea una vista que devuelva los servicios cuyo precio supere los 5€ ordenados por
 --SU CÓDIGO DE SERVICIO.
-
+CREATE VIEW SERVICIOSPRECIO_SUPERIOR5 AS
+    SELECT
+        *
+    FROM
+        SERVICIO
+    WHERE
+        PRECIO > 5;
 --10. Crea una consulta que devuelva las habitaciones reservadas para el día 15 de
 --MARZO DE 2023.
 
