@@ -7,6 +7,8 @@ begin
 end;
 
 exec / execute  PA_OBTENERNUMEROCIUDADES @nombre_pais="España"; o ''
+
+ejemplo :
 CREATE TABLE EMPLEADO (
     DOCUMENTO CHAR(8),
     NOMBRE VARCHAR(20),
