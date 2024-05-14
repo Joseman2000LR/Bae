@@ -5,7 +5,8 @@ BEGIN
     DROP PROCEDURE PA_EMPLEADOS_DEPARTAMENTO;
 END 
  -- 2. Crear un procedimiento para mostrar todos los empleados de un departamento determinado
-CREATE PROCEDURE MOSTRAR_EMPLEADOS_POR_DEPARTAMENTO @DEPARTAMENTO INT AS BEGIN IF @DEPARTAMENTO IS NULL BEGIN PRINT 'Debe proporcionar un valor para el parámetro departamento.';
+CREATE PROCEDURE MOSTRAR_EMPLEADOS_POR_DEPARTAMENTO @DEPARTAMENTO INT AS BEGIN IF @DEPARTAMENTO IS NULL
+ BEGIN PRINT 'Debe proporcionar un valor para el parámetro departamento.';
 
 RETURN;
 END;
